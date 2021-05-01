@@ -47,7 +47,7 @@ def decode_tokens(tokens):
     return ''.join(list(map(decode_token, tokens)))
 
 # instantiate model
-
+"""
 model = RoutingTransformerLM(
     num_tokens = 256,
     dim = 512,
@@ -61,6 +61,17 @@ model = RoutingTransformerLM(
     attn_dropout = 0.1,
     rel_pos_emb = False,
     n_local_attn_heads = (8, 8, 8, 8, 4, 4, 2, 2)
+)
+"""
+model = RoutingTransformerLM(
+    num_tokens = 256,
+    dim = 512,
+    heads = 8,
+    depth = 6,
+    window_size = 128,
+    reversible = True,
+    ff_chunks = 40,
+    max_seq_len = SEQ_LEN
 )
 
 model = AutoregressiveWrapper(model)
